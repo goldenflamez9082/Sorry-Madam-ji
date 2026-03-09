@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Akshant!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CSS STYLES --- */
+        :root {
+            --primary: #ff00cc;
+            --secondary: #333399;
+            --accent: #00d4ff;
+            --bg-dark: #0f0c29;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark), #302b63, #24243e);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: white;
+        }
+
+        /* The Glass Card */
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            z-index: 10;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(255, 0, 204, 0.3);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+            color: #fff;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border: none;
+            padding: 12px 30px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 5px 15px rgba(255, 0, 204, 0.4);
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 0, 204, 0.6);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 1;
+            opacity: 0.6;
+        }
+
+        .blob-1 {
+            top: -10%;
+            left: -10%;
+            width: 300px;
+            height: 300px;
+            background: var(--primary);
+        }
+
+        .blob-2 {
+            bottom: -10%;
+            right: -10%;
+            width: 350px;
+            height: 350px;
+            background: var(--accent);
+        }
+
+        #confetti-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        /* --- MODAL STYLES --- */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 400px;
+            color: white;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            color: #fff;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--accent);
+            color: #000;
+            font-weight: bold;
+        }
+
+        .submit-btn:hover {
+            background: #fff;
+        }
+
+        .status-msg {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .success {
+            color: #00ff88;
+        }
+
+        .error {
+            color: #ff4444;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <canvas id="confetti-canvas"></canvas>
+
+    <div class="card">
+        <h1>Happy Birthday!</h1>
+        <h2>Akshant</h2>
+        <p>Wishing you a day filled with happiness and a year filled with joy.</p>
+        <button class="btn" onclick="openModal()">Make a Wish 🎂</button>
+    </div>
+
+    <!-- MODAL POPUP -->
+    <div id="wishModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h3 style="margin-bottom: 15px; text-align: center;">Send a Wish</h3>
+
+            <!-- IMPORTANT: Replace 'YOUR_FORMSPREE_ID' below with your actual Formspree endpoint -->
+            <form id="wishForm" action="https://formspree.io/f/xojkjlnw" method="POST">
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" name="name" required placeholder="Who are you?">
+                </div>
+                <div class="form-group">
+                    <label>Your Wish</label>
+                    <textarea name="message" rows="4" required placeholder="Write something special..."></textarea>
+                </div>
+                <button type="submit" class="btn submit-btn">Send Wish</button>
+                <div id="statusMessage" class="status-msg"></div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        // --- Confetti Logic ---
+        function celebrate() {
+            var duration = 3 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+            function randomInRange(min, max) { return Math.random() * (max - min) + min; }
+            var interval = setInterval(function () {
+                var timeLeft = animationEnd - Date.now();
+                if (timeLeft <= 0) return clearInterval(interval);
+                var particleCount = 50 * (timeLeft / duration);
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+            }, 250);
+        }
+        window.onload = function () { setTimeout(celebrate, 500); };
+
+        // --- Modal Logic ---
+        const modal = document.getElementById("wishModal");
+        const form = document.getElementById("wishForm");
+        const statusMsg = document.getElementById("statusMessage");
+
+        function openModal() { modal.style.display = "flex"; }
+        function closeModal() { modal.style.display = "none"; statusMsg.textContent = ""; }
+
+        // Close modal if clicking outside the box
+        window.onclick = function (event) {
+            if (event.target == modal) closeModal();
+        }
+
+        // --- Form Submission Logic (Formspree) ---
+        form.addEventListener("submit", async function (e) {
+            e.preventDefault(); // Stop page reload
+
+            const data = new FormData(e.target);
+            statusMsg.textContent = "Sending...";
+            statusMsg.className = "status-msg";
+
+            try {
+                const response = await fetch(e.target.action, {
+                    method: form.method,
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    statusMsg.textContent = "Wish Sent Successfully! 🎉";
+                    statusMsg.classList.add("success");
+                    setTimeout(closeModal, 2000);
+                    celebrate(); // Extra confetti on success
+                } else {
+                    statusMsg.textContent = "Oops! Something went wrong.";
+                    statusMsg.classList.add("error");
+                }
+            } catch (error) {
+                statusMsg.textContent = "Network error. Try again.";
+                statusMsg.classList.add("error");
+            }
+        });
+    </script>
+</body>
+
+</html>
